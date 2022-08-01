@@ -1,9 +1,9 @@
-
+import Index from './layout/main/index'
 
 function App() {
   return (
     <>
-      <h1>嗨购管理系统</h1>
+      <Index />
     </>
   );
 }
