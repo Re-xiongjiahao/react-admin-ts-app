@@ -2,38 +2,45 @@
 import {
   HomeOutlined
 } from '@ant-design/icons';
+import React from 'react';
 export interface IMyMenu {
   key: string
   label: string
   path: string
   icon: any
+  index?:boolean
+  component:any
   children?: IMyMenu[]
 }
-const menus = [
+const menus: IMyMenu[] = [
   {
     key: '0-0', // 树形控件时需要
     label: '系统首页',
     path: '/',
-    icon: HomeOutlined
+    icon: HomeOutlined,
+    component:React.lazy(()=>import('../views/home/Index'))
   },
   {
     key: '0-1',
     label: '轮播图管理',
     path: '/banner',
     icon: HomeOutlined,
+    component:React.lazy(()=>import('../views/banner/Index')),
     children: [
       {
+        index:true,
         key: '0-1-0',
         label: '轮播图列表',
         path: '/banner/list',
-        icon: HomeOutlined
+        icon: HomeOutlined,
+        component:React.lazy(()=>import('../views/banner/List'))
       },
       {
         key: '0-1-1',
         label: '添加轮播图',
         path: '/banner/add',
         icon: HomeOutlined,
-        hidden: true
+        component:React.lazy(()=>import('../views/banner/Add'))
       }
     ]
   },
@@ -42,30 +49,36 @@ const menus = [
     label: '产品管理',
     path: '/pro',
     icon: HomeOutlined,
+    component:React.lazy(()=>import('../views/pro/Index')),
     children: [
       {
+        index:true,
         key: '0-2-0',
         label: '产品列表',
         path: '/pro/list',
-        icon: HomeOutlined
+        icon: HomeOutlined,
+        component:React.lazy(()=>import('../views/pro/List'))
       },
       {
         key: '0-2-1',
         label: '秒杀列表',
         path: '/pro/seckill',
-        icon: HomeOutlined
+        icon: HomeOutlined,
+        component:React.lazy(()=>import('../views/pro/Seckill'))
       },
       {
         key: '0-2-2',
         label: '推荐列表',
         path: '/pro/recommend',
-        icon: HomeOutlined
+        icon: HomeOutlined,
+        component:React.lazy(()=>import('../views/pro/Recommend'))
       },
       {
         key: '0-2-3',
         label: '筛选列表',
         path: '/pro/search',
-        icon: HomeOutlined
+        icon: HomeOutlined,
+        component:React.lazy(()=>import('../views/pro/Search'))
       },
     ]
   },
@@ -74,18 +87,22 @@ const menus = [
     label: '账户管理',
     path: '/user',
     icon: HomeOutlined,
+    component:React.lazy(()=>import('../views/user/Index')),
     children: [
       {
+        index:true,
         key: '0-3-0',
         label: '用户管理',
         path: '/user/list',
-        icon: HomeOutlined
+        icon: HomeOutlined,
+        component:React.lazy(()=>import('../views/user/List'))
       },
       {
         key: '0-3-1',
         label: '管理员管理',
         path: '/user/admin',
-        icon: HomeOutlined
+        icon: HomeOutlined,
+        component:React.lazy(()=>import('../views/user/Admin'))
       }
     ]
   }
