@@ -5,13 +5,16 @@ import { store } from './store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.less'
+import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLDivElement
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 

@@ -1,10 +1,12 @@
 // 状态管理器 定义根状态和调度类型
 import { configureStore } from '@reduxjs/toolkit'
 import appSlice from './modules/app'
+import userSlice from './modules/user'
 
 export const store  = configureStore({
   reducer:{
-    app:appSlice
+    app:appSlice,
+    user:userSlice
   }
 })
 

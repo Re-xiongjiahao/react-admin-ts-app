@@ -3,7 +3,7 @@ import { Layout} from 'antd';
 // import SideBar from './components/SiderBar';
 // import AppHeader from './components/AppHeader';
 // import AppMain from './components/AppMain';
-import { SideBar, AppHeader , AppMain } from './components'
+import { SideBar, AppHeader , AppMain ,AppBreadcrumb } from './components'
 
 const MainLayout = () => {
   return (
@@ -12,6 +12,7 @@ const MainLayout = () => {
       <SideBar />
       <Layout className="site-layout">
         <AppHeader />
+        <AppBreadcrumb />
         <AppMain />
       </Layout>
     </Layout>

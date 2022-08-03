@@ -1,7 +1,7 @@
 
 import { Layout, Menu } from 'antd';
 import type { MenuProps } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAppSelector } from '../../../store/hooks'
 import menus, { IMyMenu } from '../../../router/menus'
@@ -64,6 +64,13 @@ const SideBar = () => {
 
   // 只展开当前菜单
   const [openKeys, setOpenKeys] = useState(['/'+pathname.split('/')[1]]);
+
+  // 监听地址栏的变化，动态选中，展开一级菜单
+  useEffect(() => {
+    // console.log('siderBar',pathname)
+    setSelectedKeys([pathname]);
+    setOpenKeys(['/'+pathname.split('/')[1]])
+  },[pathname])
 
   const onOpenChange: MenuProps['onOpenChange'] = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);

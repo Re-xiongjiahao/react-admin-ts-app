@@ -1,6 +1,6 @@
 import { Layout,Spin} from 'antd';
 import React from 'react';
-import { Routes,Route } from 'react-router-dom';
+import { Routes,Route, Navigate } from 'react-router-dom';
 import menus,{ IMyMenu} from '../../../router/menus';
 const { Content } = Layout;
 const AppMain = () => {
@@ -19,7 +19,8 @@ const AppMain = () => {
         if(item.index){ // 二级菜单有默认路由显示
           return (
             <React.Fragment key={item.path}>
-              <Route index element={<item.component />}/>
+              {/* <Route index element={<item.component />}/> */}
+              <Route index element={ <Navigate to={item.path} /> }/>
               <Route path={item.path} element={<item.component />}/>
             </React.Fragment>
           )
@@ -33,7 +34,7 @@ const AppMain = () => {
     <Content
       className="site-layout-background"
       style={{
-        margin: '24px 16px',
+        margin: '0px 16px 24px',
         padding: 24,
         minHeight: 280,
       }}
