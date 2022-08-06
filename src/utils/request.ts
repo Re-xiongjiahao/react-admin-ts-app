@@ -22,6 +22,7 @@ ins.interceptors.response.use((response) => {
   // 校验token信息
   if(response.data.code === '10119'){
     // token 无效（没传，或者过期）
+    localStorage.removeItem('loginState')
     // 跳转到登录页面
     window.location.href = '/login'
   }

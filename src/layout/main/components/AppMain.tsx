@@ -1,7 +1,13 @@
 import { Layout,Spin} from 'antd';
 import React from 'react';
-import { Routes,Route, Navigate } from 'react-router-dom';
+import { Routes,Route, Navigate, useLocation } from 'react-router-dom';
 import menus,{ IMyMenu} from '../../../router/menus';
+
+import { useAppSelector } from '../../../store/hooks'
+import { formatArr,getSiderBarMenu,isContainMenus } from '../../../utils/format';
+import Error404 from '../../../views/error/Error404'
+import NoAuth from '../../../views/error/NoAuth'
+
 const { Content } = Layout;
 const AppMain = () => {
 
@@ -30,6 +36,20 @@ const AppMain = () => {
       }
     })
   }
+
+  // 页面权限功能
+  // 获取用户状态权限列表
+  const checkedkeys = useAppSelector(state => state.user.checkedkeys)
+  const adminname = useAppSelector(state => state.user.adminname)
+  // checkedkeys ['0-0', '0-1-0', '0-2-0', '0-3-1']
+
+  const newKeys = formatArr(checkedkeys)
+  // newKeys ['0-0', '0-1', '0-1-0', '0-2', '0-2-0', '0-3', '0-3-1']
+  const newMenus = adminname==='admin'?menus:getSiderBarMenu(menus,newKeys)
+
+  // 判断页面是无权限还是404
+  const { pathname } = useLocation()
+  const isAuth = isContainMenus(menus,pathname)
   return (
     <Content
       className="site-layout-background"
@@ -42,9 +62,10 @@ const AppMain = () => {
       <React.Suspense fallback={ <Spin size='large'/>}>
         <Routes>
           {
-            renderRoute(menus)
+            // renderRoute(menus)
+            renderRoute(newMenus)
           }
-          <Route path='*' element={<div>404</div>} />
+          <Route path='*' element={isAuth?<NoAuth />:<Error404 />} />
         </Routes>
       </React.Suspense>
     </Content>

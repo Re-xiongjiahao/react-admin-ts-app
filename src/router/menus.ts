@@ -105,6 +105,54 @@ const menus: IMyMenu[] = [
         component:React.lazy(()=>import('../views/user/Admin'))
       }
     ]
+  },
+  {
+    key: '0-4',
+    path: '/data',
+    icon: HomeOutlined,
+    label: '数据可视化',
+    component: React.lazy(() => import('./../views/data/Index')),
+    children: [
+      {
+        index: true,
+        key: '0-4-0',
+        path: '/data/echarts',
+        icon: HomeOutlined,
+        label: 'echarts',
+        component: React.lazy(() => import('./../views/data/Echarts')),
+      },
+      {
+        key: '0-4-1',
+        path: '/data/antvg2',
+        icon: HomeOutlined,
+        label: 'antvg2',
+        component: React.lazy(() => import('./../views/data/AntvG2')),
+      }
+    ]
+  },
+  {
+    key: '0-5',
+    path: '/editor',
+    icon: HomeOutlined,
+    label: '编辑器',
+    component: React.lazy(() => import('./../views/editor/Index')),
+    children: [
+      {
+        index: true,
+        key: '0-5-0',
+        path: '/editor/braft',
+        icon: HomeOutlined,
+        label: '富文本编辑器',
+        component: React.lazy(() => import('./../views/editor/Braft')),
+      },
+      {
+        key: '0-5-1',
+        path: '/editor/md',
+        icon: HomeOutlined,
+        label: 'markdown编辑器',
+        component: React.lazy(() => import('./../views/editor/Md')),
+      },
+    ]
   }
 ]
 

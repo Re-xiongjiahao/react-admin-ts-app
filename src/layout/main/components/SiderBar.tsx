@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../store/hooks'
 import menus, { IMyMenu } from '../../../router/menus'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { formatArr,getSiderBarMenu } from '../../../utils/format';
 
 const { Sider } = Layout
 
@@ -53,10 +54,20 @@ menus.forEach(item=>{
 })
 
 const SideBar = () => {
-  const items = getMenu(menus)
   // 获取状态管理中的数据
   const collapsed = useAppSelector(state => state.app.collapsed)
 
+  // 获取用户状态权限列表
+  const checkedkeys = useAppSelector(state => state.user.checkedkeys)
+  const adminname = useAppSelector(state => state.user.adminname)
+  // checkedkeys ['0-0', '0-1-0', '0-2-0', '0-3-1']
+
+  const newKeys = formatArr(checkedkeys)
+  // newKeys ['0-0', '0-1', '0-1-0', '0-2', '0-2-0', '0-3', '0-3-1']
+  const newMenus = adminname==='admin'?menus:getSiderBarMenu(menus,newKeys)
+
+  // const items = getMenu(menus)
+  const items = getMenu(newMenus)
   // 获取地址栏信息
   let {pathname} = useLocation()
   // console.log(pathname);
