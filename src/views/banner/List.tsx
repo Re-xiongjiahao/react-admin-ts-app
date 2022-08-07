@@ -18,6 +18,7 @@ const BannerList: FC<BannerListProps> = (props) => {
   // 分页器数据
   const [current,setCurrent] = useState(1)
   const [pageSize,setPageSize] = useState(5)
+
   // 获取轮播图列表数据
   const [bannerList,setBannerList] = useState([])
   const getData = async () => {
