@@ -153,6 +153,30 @@ const menus: IMyMenu[] = [
         component: React.lazy(() => import('./../views/editor/Md')),
       },
     ]
+  },
+  {
+    key: '0-6',
+    path: '/excel',
+    icon: HomeOutlined,
+    label: '导入以及导出',
+    component: React.lazy(() => import('./../views/excel/Index')),
+    children: [
+      {
+        index: true,
+        key: '0-6-0',
+        path: '/excel/export',
+        icon: HomeOutlined,
+        label: '导出',
+        component: React.lazy(() => import('./../views/excel/Export')),
+      },
+      {
+        key: '0-6-1',
+        path: '/excel/import',
+        icon: HomeOutlined,
+        label: '导入',
+        component: React.lazy(() => import('./../views/excel/Import')),
+      },
+    ]
   }
 ]
 
