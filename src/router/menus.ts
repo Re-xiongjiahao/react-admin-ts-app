@@ -177,6 +177,30 @@ const menus: IMyMenu[] = [
         component: React.lazy(() => import('./../views/excel/Import')),
       },
     ]
+  },
+  {
+    key: '0-7',
+    path: '/map',
+    icon: HomeOutlined,
+    label: '地图',
+    component: React.lazy(() => import('./../views/map/Index')),
+    children: [
+      {
+        index: true,
+        key: '0-7-0',
+        path: '/map/baidu',
+        icon: HomeOutlined,
+        label: '百度地图',
+        component: React.lazy(() => import('./../views/map/Baidu')),
+      },
+      {
+        key: '0-7-1',
+        path: '/map/gaode',
+        icon: HomeOutlined,
+        label: '高德地图',
+        component: React.lazy(() => import('./../views/map/Gaode')),
+      }
+    ]
   }
 ]
 
